@@ -7,9 +7,11 @@
 <meta name="description" content="NB Tuinen verzorgt professioneel tuinonderhoud, snoeien, terras onderhoud en aanleg in Hoofddorp, Haarlem en omstreken. Particulier en zakelijk." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://primary.jwwb.nl" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
+    /* Kleuren afgestemd op NB Tuinen sobere, professionele stijl */
     --green-deep: #1b3a2b;
     --green-dark: #2a5239;
     --green: #3e7a52;
@@ -20,7 +22,7 @@
     --gold: #c08c3a;
     --gold-soft: #e0b878;
     --stone: #7a7669;
-    --white: #fcfaf5;
+    --white: #ffffff;
     --ink: #14201a;
     --shadow: 0 24px 60px -28px rgba(20, 32, 26, 0.45);
     --shadow-soft: 0 12px 32px -16px rgba(20, 32, 26, 0.25);
@@ -55,9 +57,8 @@
   .img-wrap img {
     width: 100%; height: 100%;
     object-fit: cover;
-    transition: transform .6s ease, opacity .4s ease;
+    transition: transform .6s ease;
   }
-  .img-wrap img.loaded { opacity: 1; }
   .img-wrap.has-error img { display: none; }
   .img-wrap.has-error::after {
     content: '🌿';
@@ -70,7 +71,7 @@
   .nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 18px 0;
-    background: rgba(252, 250, 245, 0.9);
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid rgba(27, 58, 43, 0.08);
@@ -81,25 +82,9 @@
     display: flex; align-items: center; gap: 14px;
     color: var(--green-deep);
   }
-  .logo-mark {
-    width: 46px; height: 46px;
-    background: var(--green-deep);
-    color: var(--cream);
-    border-radius: 10px;
-    display: grid; place-items: center;
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    font-size: 19px;
-    letter-spacing: -0.02em;
-    position: relative;
-    overflow: hidden;
-  }
-  .logo-mark::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 5px;
-    background: var(--gold);
+  .logo-img {
+    height: 52px; width: auto; display: block;
+    border-radius: 6px;
   }
   .logo-text {
     font-family: 'Fraunces', serif;
@@ -107,6 +92,7 @@
     font-size: 22px;
     letter-spacing: -0.01em;
     line-height: 1;
+    color: var(--green-deep);
   }
   .logo-text small {
     display: block;
@@ -128,7 +114,7 @@
   }
   .nav-links a:not(.btn)::after {
     content: ''; position: absolute; left: 0; bottom: -4px;
-    width: 0; height: 1.5px; background: var(--gold);
+    width: 0; height: 1.5px; background: var(--green);
     transition: width .3s ease;
   }
   .nav-links a:not(.btn):hover::after { width: 100%; }
@@ -155,8 +141,8 @@
     border: 1.5px solid var(--green-deep);
   }
   .btn--outline:hover { background: var(--green-deep); color: var(--cream) !important; }
-  .btn--gold { background: var(--gold); }
-  .btn--gold:hover { background: #a3742c; }
+  .btn--green { background: var(--green); }
+  .btn--green:hover { background: var(--green-dark); }
   .btn--whatsapp { background: #25D366; }
   .btn--whatsapp:hover { background: #1eb858; }
 
@@ -177,8 +163,8 @@
   .hero::before {
     content: ''; position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 1200px 600px at 80% 20%, rgba(107, 163, 126, 0.25), transparent 60%),
-      radial-gradient(ellipse 800px 500px at 10% 90%, rgba(192, 140, 58, 0.10), transparent 60%);
+      radial-gradient(ellipse 1200px 600px at 80% 20%, rgba(107, 163, 126, 0.22), transparent 60%),
+      radial-gradient(ellipse 800px 500px at 10% 90%, rgba(192, 140, 58, 0.08), transparent 60%);
     pointer-events: none;
   }
   .hero-grid {
@@ -199,7 +185,7 @@
   }
   .hero-eyebrow::before {
     content: ''; width: 6px; height: 6px;
-    background: var(--gold); border-radius: 50%;
+    background: var(--green); border-radius: 50%;
     animation: pulse 2s infinite;
   }
   @keyframes pulse {
@@ -239,9 +225,9 @@
   }
   .trust-avatars div:first-child { margin-left: 0; }
   .trust-avatars div:nth-child(1) { background: var(--green); }
-  .trust-avatars div:nth-child(2) { background: var(--gold); }
-  .trust-avatars div:nth-child(3) { background: var(--green-dark); }
-  .trust-avatars div:nth-child(4) { background: var(--green-deep); }
+  .trust-avatars div:nth-child(2) { background: var(--green-dark); }
+  .trust-avatars div:nth-child(3) { background: var(--green-deep); }
+  .trust-avatars div:nth-child(4) { background: var(--gold); }
   .trust-text { font-size: 14px; }
   .trust-text strong {
     display: block; font-family: 'Fraunces', serif;
@@ -266,7 +252,7 @@
   .hero-visual .img-wrap img:hover { transform: scale(1.04); }
   .hero-badge {
     position: absolute; bottom: 28px; left: 28px; z-index: 2;
-    background: rgba(252, 250, 245, 0.95);
+    background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(10px);
     padding: 18px 22px; border-radius: 16px;
     display: flex; align-items: center; gap: 14px;
@@ -297,8 +283,8 @@
   }
   .hero-floating-dot {
     width: 10px; height: 10px;
-    background: var(--gold); border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(192,140,58,0.3);
+    background: var(--green); border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(62,122,82,0.3);
   }
 
   /* STRIP */
@@ -378,7 +364,6 @@
   .audience {
     padding: 120px 0;
     background: var(--cream);
-    position: relative;
   }
   .audience-header { text-align: center; margin-bottom: 60px; max-width: 720px; margin-left: auto; margin-right: auto; }
   .audience-header p { color: var(--green-dark); font-size: 16.5px; margin-top: 12px; }
@@ -413,7 +398,7 @@
     font-size: 11px; font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--green);
     margin-bottom: 4px;
   }
   .audience-card p {
@@ -429,11 +414,11 @@
     margin-top: auto; padding-top: 12px;
     transition: gap .3s;
   }
-  .audience-card a:hover { gap: 14px; color: var(--gold); }
+  .audience-card a:hover { gap: 14px; color: var(--green); }
   .audience-card a svg { width: 14px; height: 14px; }
 
   /* DIENSTEN */
-  .services { padding: 120px 0; background: var(--white); position: relative; }
+  .services { padding: 120px 0; background: var(--white); }
   .services-header {
     display: grid; grid-template-columns: 1fr 1fr;
     gap: 60px; align-items: end; margin-bottom: 60px;
@@ -456,7 +441,7 @@
   .service-card:hover .img-wrap img { transform: scale(1.06); }
   .service-card-num {
     position: absolute; top: 16px; left: 16px;
-    background: rgba(252, 250, 245, 0.95);
+    background: rgba(255, 255, 255, 0.96);
     color: var(--green-deep);
     width: 36px; height: 36px; border-radius: 50%;
     display: grid; place-items: center;
@@ -485,8 +470,8 @@
     content: ''; position: absolute;
     left: 0; top: 7px;
     width: 12px; height: 6px;
-    border-left: 2px solid var(--gold);
-    border-bottom: 2px solid var(--gold);
+    border-left: 2px solid var(--green);
+    border-bottom: 2px solid var(--green);
     transform: rotate(-45deg);
   }
   .service-link {
@@ -494,7 +479,7 @@
     color: var(--green-deep); font-size: 14px;
     font-weight: 600; transition: gap .3s;
   }
-  .service-link:hover { gap: 14px; color: var(--gold); }
+  .service-link:hover { gap: 14px; color: var(--green); }
   .service-link svg { width: 14px; height: 14px; }
 
   /* WERKGEBIED */
@@ -659,7 +644,7 @@
     transition: background .3s;
     color: var(--cream);
   }
-  .footer-social a:hover { background: var(--gold); }
+  .footer-social a:hover { background: var(--green); }
   .footer-social svg { width: 16px; height: 16px; }
 
   footer h5 {
@@ -734,17 +719,18 @@
     .area-locations { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
     .strip-item { font-size: 17px; }
+    .logo-img { height: 44px; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- NAV met ECHTE NB Tuinen logo -->
 <nav class="nav">
   <div class="container nav-inner">
     <a href="#" class="logo">
-      <span class="logo-mark">NB</span>
-      <span class="logo-text">NB Tuinen<small>Hovenier · Hoofddorp</small></span>
+      <img class="logo-img" src="https://primary.jwwb.nl/public/r/h/n/temp-zfqndtmdvoraxnvoxdah/50155aac-d684-471e-9473-c2155c1ca8e7-high.jpg" alt="NB Tuinen logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <span class="logo-text" style="display:none;">NB Tuinen<small>Hovenier · Hoofddorp</small></span>
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#over">Over Ons</a></li>
@@ -757,7 +743,7 @@
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO met ECHTE NB Tuinen hero foto -->
 <header class="hero">
   <div class="container hero-grid">
     <div class="hero-content reveal">
@@ -765,11 +751,11 @@
       <h1>Uw tuin,<br><em>onze zorg.</em></h1>
       <p class="hero-sub">
         Is uw tuin toe aan een opfrisbeurt? Of wilt u het hele jaar door genieten
-        van een verzorgde tuin zonder er zelf naar om te kijken? Bij NB Tuinen
+        van een nette, verzorgde tuin zonder er zelf naar om te kijken? Bij NB Tuinen
         nemen wij het tuinonderhoud uit handen — vakkundig en betrouwbaar.
       </p>
       <div class="hero-cta">
-        <a href="mailto:nb.tuinen@outlook.com" class="btn btn--gold">
+        <a href="mailto:nb.tuinen@outlook.com" class="btn btn--green">
           Offerte aanvragen
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
         </a>
@@ -791,7 +777,7 @@
     </div>
     <div class="hero-visual reveal">
       <div class="img-wrap">
-        <img loading="eager" src="https://images.pexels.com/photos/2728261/pexels-photo-2728261.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Mooi onderhouden tuin">
+        <img loading="eager" src="https://primary.jwwb.nl/pexels/10/1092197.jpeg" alt="Verzorgde tuin van NB Tuinen">
       </div>
       <div class="hero-floating">
         <div class="hero-floating-dot"></div>
@@ -831,18 +817,18 @@
   </div>
 </section>
 
-<!-- OVER -->
+<!-- OVER met ECHTE foto van Nick Bult -->
 <section class="about" id="over">
   <div class="container about-grid">
     <div class="about-visual reveal">
       <div class="about-visual-main">
         <div class="img-wrap">
-          <img loading="lazy" src="https://images.pexels.com/photos/1301856/pexels-photo-1301856.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Hovenier aan het werk in de tuin">
+          <img loading="lazy" src="https://primary.jwwb.nl/public/r/h/n/temp-zfqndtmdvoraxnvoxdah/611aee4b-7029-4821-a0d5-65720ab6e5bb-high.jpg" alt="Nick Bult van NB Tuinen">
         </div>
       </div>
       <div class="about-visual-accent">
         <div class="img-wrap">
-          <img loading="lazy" src="https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Tuingereedschap">
+          <img loading="lazy" src="https://primary.jwwb.nl/public/r/h/n/temp-zfqndtmdvoraxnvoxdah/5d53616f-8f9c-4699-b3fa-3cb84f6b93fd-high.jpg" alt="Werkgebied NB Tuinen">
         </div>
       </div>
     </div>
@@ -927,7 +913,7 @@
   </div>
 </section>
 
-<!-- DIENSTEN -->
+<!-- DIENSTEN met ECHTE NB Tuinen foto's -->
 <section class="services" id="diensten">
   <div class="container">
     <div class="services-header reveal">
@@ -944,7 +930,7 @@
       <div class="service-card reveal">
         <div class="service-card-img">
           <div class="img-wrap">
-            <img loading="lazy" src="https://images.pexels.com/photos/4505169/pexels-photo-4505169.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Snoeien van planten">
+            <img loading="lazy" src="https://primary.jwwb.nl/public/r/h/n/temp-zfqndtmdvoraxnvoxdah/photo-2025-10-31-08-38-00-standard-tw5vb6.jpg" alt="Snoeien door NB Tuinen">
           </div>
           <div class="service-card-num">01</div>
         </div>
@@ -952,8 +938,8 @@
           <h3>Snoeien</h3>
           <p>
             Onze snoeiservice zorgt ervoor dat uw tuin er altijd netjes en
-            verzorgd uitziet. We verwijderen dode takken en zorgen voor een
-            optimale groei.
+            verzorgd uitziet. Wij verwijderen dode takken en zorgen voor een
+            optimale groei van je planten en bomen.
           </p>
           <ul>
             <li>Professionele snoeitechnieken</li>
@@ -970,7 +956,7 @@
       <div class="service-card reveal">
         <div class="service-card-img">
           <div class="img-wrap">
-            <img loading="lazy" src="https://images.pexels.com/photos/259600/pexels-photo-259600.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Bestrating en terras">
+            <img loading="lazy" src="https://primary.jwwb.nl/public/r/h/n/temp-zfqndtmdvoraxnvoxdah/9106ccb7-13c2-4bcc-9247-8d524837a75b-standard.jpg" alt="Terras onderhoud door NB Tuinen">
           </div>
           <div class="service-card-num">02</div>
         </div>
@@ -978,8 +964,8 @@
           <h3>Terras onderhoud</h3>
           <p>
             Tegels vol groene aanslag, onkruid tussen de voegen of verzakte
-            bestrating? Wij zorgen dat uw terras, oprit of looppad er weer
-            schoon, veilig en verzorgd uitziet.
+            bestrating? Geen zorgen — wij zorgen ervoor dat uw terras, oprit of
+            looppad er weer schoon, veilig en verzorgd uitziet.
           </p>
           <ul>
             <li>Reinigen van bestrating</li>
@@ -997,16 +983,16 @@
       <div class="service-card reveal">
         <div class="service-card-img">
           <div class="img-wrap">
-            <img loading="lazy" src="https://images.pexels.com/photos/589/garden-green-trees-back-yard.jpg?auto=compress&cs=tinysrgb&w=900" alt="Verzorgde tuin met gazon">
+            <img loading="lazy" src="https://primary.jwwb.nl/public/r/h/n/temp-zfqndtmdvoraxnvoxdah/d63bd14d-da17-4b5a-a7fe-d105dda990ac-standard.jpg" alt="Tuinonderhoud door NB Tuinen">
           </div>
           <div class="service-card-num">03</div>
         </div>
         <div class="service-card-body">
           <h3>Tuinonderhoud</h3>
           <p>
-            Het onderhoud van uw tuin is essentieel voor een gezonde groei van
-            planten en bomen. Laat ons het zware werk doen, zodat u kunt
-            genieten van een prachtige tuin.
+            Het onderhoud van je tuin is essentieel voor een gezonde groei van je
+            planten en bomen. Laat ons het zware werk doen, zodat jij kan genieten
+            van een prachtige tuin.
           </p>
           <ul>
             <li>Wekelijks, maandelijks of op afroep</li>
@@ -1024,16 +1010,16 @@
       <div class="service-card reveal">
         <div class="service-card-img">
           <div class="img-wrap">
-            <img loading="lazy" src="https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Aanleg van een nieuwe tuin">
+            <img loading="lazy" src="https://primary.jwwb.nl/public/r/h/n/temp-zfqndtmdvoraxnvoxdah/65c06269-59ff-41a8-84b8-46dec9fa6afc-standard.jpg" alt="Aanleg tuin door NB Tuinen">
           </div>
           <div class="service-card-num">04</div>
         </div>
         <div class="service-card-body">
           <h3>Aanleg tuin</h3>
           <p>
-            Droomt u van een compleet nieuwe tuin? Wij verzorgen de aanleg van
-            begin tot eind. Van grondwerk en bestrating tot beplanting en
-            afwerking — perfect afgestemd op uw wensen.
+            Droom je van een compleet nieuwe tuin of wil je jouw huidige tuin
+            vernieuwen? Wij verzorgen de aanleg van begin tot eind. Van grondwerk
+            en bestrating tot beplanting en afwerking.
           </p>
           <ul>
             <li>Grondwerk en bestrating</li>
@@ -1063,7 +1049,7 @@
         daar van dienst zijn.
       </p>
       <div style="margin-top: 28px;">
-        <a href="mailto:nb.tuinen@outlook.com" class="btn btn--gold">
+        <a href="mailto:nb.tuinen@outlook.com" class="btn">
           Vraag het ons
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
         </a>
@@ -1154,7 +1140,7 @@
         wensen. Bel, app of mail — wij reageren snel en denken graag met u mee.
       </p>
       <div class="cta-buttons">
-        <a href="mailto:nb.tuinen@outlook.com" class="btn btn--gold">
+        <a href="mailto:nb.tuinen@outlook.com" class="btn btn--green">
           Mail nb.tuinen@outlook.com
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
         </a>
@@ -1163,7 +1149,7 @@
           06 - 5490 3609
         </a>
         <a href="https://api.whatsapp.com/send?phone=31654903609" class="btn btn--whatsapp" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.88 11.93L4 20l4.18-1.1a7.93 7.93 0 0 0 3.87 1h.01a7.94 7.94 0 0 0 5.54-13.58Zm-5.55 12.21a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.49.65.67-2.42-.16-.25a6.6 6.6 0 1 1 12.25-3.49 6.6 6.6 0 0 1-6.67 6.57Zm3.61-4.93c-.2-.1-1.17-.58-1.36-.64-.18-.07-.31-.1-.45.1-.13.2-.51.64-.62.77-.12.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99-.59-.53-.99-1.18-1.1-1.38-.12-.2-.01-.31.09-.41.09-.1.2-.25.3-.37.1-.13.13-.21.2-.35.06-.13.03-.25-.02-.36-.05-.1-.45-1.08-.62-1.48-.16-.39-.33-.34-.45-.34h-.39c-.13 0-.34.05-.52.25-.18.2-.69.67-.69 1.65 0 .97.71 1.91.81 2.04.1.13 1.4 2.13 3.39 2.99.47.21.84.33 1.13.42.48.15.91.13 1.25.08.38-.06 1.17-.48 1.34-.94.16-.46.16-.86.12-.94-.05-.08-.18-.13-.38-.23Z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.88 11.93L4 20l4.18-1.1a7.93 7.93 0 0 0 3.87 1h.01a7.94 7.94 0 0 0 5.54-13.58Zm-5.55 12.21a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.49.65.67-2.42-.16-.25a6.6 6.6 0 1 1 12.25-3.49 6.6 6.6 0 0 1-6.67 6.57Z"/></svg>
           WhatsApp
         </a>
       </div>
@@ -1176,9 +1162,9 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="#" class="logo" style="color: var(--cream);">
-          <span class="logo-mark" style="background: var(--gold);">NB</span>
-          <span class="logo-text" style="color: var(--cream);">NB Tuinen<small style="color: rgba(246,243,236,0.5);">Hovenier · Hoofddorp</small></span>
+        <a href="#" class="logo" style="margin-bottom: 16px;">
+          <img class="logo-img" src="https://primary.jwwb.nl/public/r/h/n/temp-zfqndtmdvoraxnvoxdah/50155aac-d684-471e-9473-c2155c1ca8e7-high.jpg" alt="NB Tuinen" style="height: 60px; filter: brightness(1.1);" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <span class="logo-text" style="color: var(--cream); display:none;">NB Tuinen<small style="color: rgba(246,243,236,0.5);">Hovenier · Hoofddorp</small></span>
         </a>
         <p>
           Vakkundig tuinonderhoud, snoeien, terras onderhoud en complete
@@ -1244,16 +1230,11 @@
 </footer>
 
 <script>
-  // Image error handling - groene placeholder bij fout
+  // Image fallback
   document.querySelectorAll('.img-wrap img').forEach(img => {
-    img.addEventListener('load', () => img.classList.add('loaded'));
     img.addEventListener('error', () => {
       img.parentElement.classList.add('has-error');
     });
-    // Als ze al gecached/geladen zijn
-    if (img.complete && img.naturalHeight !== 0) {
-      img.classList.add('loaded');
-    }
   });
 
   // Mobiel menu
