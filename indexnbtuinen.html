@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NB Tuinen – Hovenier Hoofddorp & omstreken | Tuinonderhoud en aanleg</title>
+<meta name="description" content="NB Tuinen verzorgt professioneel tuinonderhoud, snoeien, terras onderhoud en aanleg in Hoofddorp, Haarlem en omstreken. Particulier en zakelijk." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1b3a2b;
+    --green-dark: #2a5239;
+    --green: #3e7a52;
+    --green-mid: #6ba37e;
+    --green-soft: #c3dbc9;
+    --cream: #f6f3ec;
+    --cream-warm: #ece5d3;
+    --gold: #c08c3a;
+    --gold-soft: #e0b878;
+    --stone: #7a7669;
+    --white: #fcfaf5;
+    --ink: #14201a;
+    --shadow: 0 24px 60px -28px rgba(20, 32, 26, 0.45);
+    --shadow-soft: 0 12px 32px -16px rgba(20, 32, 26, 0.25);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--green-deep);
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { max-width: 100%; display: block; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+
+  /* Image wrapper met fallback */
+  .img-wrap {
+    width: 100%; height: 100%;
+    position: relative;
+    background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
+    overflow: hidden;
+  }
+  .img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .6s ease, opacity .4s ease;
+  }
+  .img-wrap img.loaded { opacity: 1; }
+  .img-wrap.has-error img { display: none; }
+  .img-wrap.has-error::after {
+    content: '🌿';
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    font-size: 4rem; opacity: 0.5;
+  }
+
+  /* NAV */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 18px 0;
+    background: rgba(252, 250, 245, 0.9);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(27, 58, 43, 0.08);
+    transition: padding .3s ease;
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+  .logo {
+    display: flex; align-items: center; gap: 14px;
+    color: var(--green-deep);
+  }
+  .logo-mark {
+    width: 46px; height: 46px;
+    background: var(--green-deep);
+    color: var(--cream);
+    border-radius: 10px;
+    display: grid; place-items: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -0.02em;
+    position: relative;
+    overflow: hidden;
+  }
+  .logo-mark::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 5px;
+    background: var(--gold);
+  }
+  .logo-text {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .logo-text small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-top: 4px;
+  }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--green-deep);
+    position: relative;
+    transition: color .25s;
+  }
+  .nav-links a:not(.btn)::after {
+    content: ''; position: absolute; left: 0; bottom: -4px;
+    width: 0; height: 1.5px; background: var(--gold);
+    transition: width .3s ease;
+  }
+  .nav-links a:not(.btn):hover::after { width: 100%; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 24px;
+    background: var(--green-deep);
+    color: var(--cream) !important;
+    border-radius: 999px;
+    font-size: 14.5px; font-weight: 500;
+    border: none; cursor: pointer;
+    transition: all .3s ease;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn:hover {
+    background: var(--green-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -10px rgba(20, 32, 26, 0.45);
+  }
+  .btn--outline {
+    background: transparent;
+    color: var(--green-deep) !important;
+    border: 1.5px solid var(--green-deep);
+  }
+  .btn--outline:hover { background: var(--green-deep); color: var(--cream) !important; }
+  .btn--gold { background: var(--gold); }
+  .btn--gold:hover { background: #a3742c; }
+  .btn--whatsapp { background: #25D366; }
+  .btn--whatsapp:hover { background: #1eb858; }
+
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .nav-toggle span {
+    display: block; width: 26px; height: 2px;
+    background: var(--green-deep); margin: 5px 0; transition: .3s;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    padding: 140px 0 80px;
+    overflow: hidden;
+    background: var(--cream);
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 1200px 600px at 80% 20%, rgba(107, 163, 126, 0.25), transparent 60%),
+      radial-gradient(ellipse 800px 500px at 10% 90%, rgba(192, 140, 58, 0.10), transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: relative;
+    display: grid; grid-template-columns: 1.05fr 1fr;
+    gap: 60px; align-items: center;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 8px 16px;
+    background: rgba(27, 58, 43, 0.08);
+    border-radius: 999px;
+    font-size: 12.5px; font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--gold); border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.4); }
+  }
+  .hero h1 {
+    font-size: clamp(44px, 6.5vw, 82px);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--green);
+    font-weight: 400;
+  }
+  .hero-sub {
+    font-size: 19px;
+    color: var(--green-dark);
+    max-width: 520px;
+    margin-bottom: 36px;
+    line-height: 1.55;
+  }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+  .hero-trust { display: flex; align-items: center; gap: 18px; }
+  .trust-avatars { display: flex; }
+  .trust-avatars div {
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 3px solid var(--cream);
+    margin-left: -12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: grid; place-items: center;
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 16px; color: var(--cream);
+  }
+  .trust-avatars div:first-child { margin-left: 0; }
+  .trust-avatars div:nth-child(1) { background: var(--green); }
+  .trust-avatars div:nth-child(2) { background: var(--gold); }
+  .trust-avatars div:nth-child(3) { background: var(--green-dark); }
+  .trust-avatars div:nth-child(4) { background: var(--green-deep); }
+  .trust-text { font-size: 14px; }
+  .trust-text strong {
+    display: block; font-family: 'Fraunces', serif;
+    font-size: 17px; color: var(--green-deep); font-weight: 500;
+  }
+  .trust-text span { color: var(--stone); }
+  .stars { color: var(--gold); letter-spacing: 2px; font-size: 14px; }
+
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 4/5;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .hero-visual::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(20, 32, 26, 0.3));
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero-visual .img-wrap img:hover { transform: scale(1.04); }
+  .hero-badge {
+    position: absolute; bottom: 28px; left: 28px; z-index: 2;
+    background: rgba(252, 250, 245, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 18px 22px; border-radius: 16px;
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+  }
+  .hero-badge-icon {
+    width: 42px; height: 42px;
+    background: var(--green); border-radius: 12px;
+    display: grid; place-items: center; color: white;
+  }
+  .hero-badge-text { font-size: 13px; line-height: 1.3; }
+  .hero-badge-text strong {
+    display: block; font-family: 'Fraunces', serif;
+    font-size: 15px; color: var(--green-deep); font-weight: 600;
+  }
+  .hero-badge-text span { color: var(--stone); }
+  .hero-floating {
+    position: absolute; top: 40px; right: -20px;
+    background: var(--white); padding: 14px 18px;
+    border-radius: 14px; box-shadow: var(--shadow-soft);
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; z-index: 2;
+    animation: float 4s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .hero-floating-dot {
+    width: 10px; height: 10px;
+    background: var(--gold); border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(192,140,58,0.3);
+  }
+
+  /* STRIP */
+  .strip {
+    background: var(--green-deep); color: var(--cream);
+    padding: 24px 0; overflow: hidden;
+  }
+  .strip-track {
+    display: flex; gap: 60px;
+    animation: scroll 35s linear infinite;
+    white-space: nowrap;
+  }
+  .strip-item {
+    display: inline-flex; align-items: center; gap: 16px;
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 22px; color: var(--cream-warm);
+    letter-spacing: -0.01em;
+  }
+  .strip-item::after {
+    content: '✦'; color: var(--gold-soft);
+    font-style: normal; font-size: 14px;
+  }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* OVER */
+  .about { padding: 120px 0; background: var(--white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.1fr;
+    gap: 80px; align-items: center;
+  }
+  .about-visual { position: relative; }
+  .about-visual-main {
+    aspect-ratio: 3/4; border-radius: 20px;
+    overflow: hidden; box-shadow: var(--shadow);
+  }
+  .about-visual-accent {
+    position: absolute; bottom: -40px; right: -30px;
+    width: 240px; aspect-ratio: 1;
+    border-radius: 20px; overflow: hidden;
+    border: 8px solid var(--white);
+    box-shadow: var(--shadow);
+  }
+
+  .section-label {
+    display: inline-block; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 16px;
+    position: relative; padding-left: 32px;
+  }
+  .section-label::before {
+    content: ''; position: absolute; left: 0; top: 50%;
+    width: 20px; height: 1.5px; background: var(--green);
+  }
+  .section-title {
+    font-size: clamp(34px, 4vw, 52px);
+    margin-bottom: 24px; font-weight: 500;
+  }
+  .section-title em { font-style: italic; color: var(--green); font-weight: 400; }
+
+  .about p { color: var(--green-dark); font-size: 16.5px; margin-bottom: 16px; }
+  .about-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 32px; margin-top: 40px; padding-top: 40px;
+    border-top: 1px solid rgba(27, 58, 43, 0.12);
+  }
+  .stat-num {
+    font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500;
+    color: var(--green-deep); line-height: 1; margin-bottom: 6px;
+  }
+  .stat-num span { color: var(--gold); }
+  .stat-label { font-size: 13.5px; color: var(--stone); line-height: 1.4; }
+
+  /* AUDIENCE */
+  .audience {
+    padding: 120px 0;
+    background: var(--cream);
+    position: relative;
+  }
+  .audience-header { text-align: center; margin-bottom: 60px; max-width: 720px; margin-left: auto; margin-right: auto; }
+  .audience-header p { color: var(--green-dark); font-size: 16.5px; margin-top: 12px; }
+  .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .audience-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid rgba(27, 58, 43, 0.08);
+    display: flex; flex-direction: column;
+    gap: 16px;
+    transition: transform .4s ease, box-shadow .4s ease;
+  }
+  .audience-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow);
+  }
+  .audience-icon {
+    width: 56px; height: 56px;
+    background: var(--green-soft);
+    color: var(--green-deep);
+    border-radius: 14px;
+    display: grid; place-items: center;
+    margin-bottom: 8px;
+  }
+  .audience-card h3 {
+    font-size: 26px;
+    margin-bottom: 4px;
+  }
+  .audience-tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .audience-card p {
+    color: var(--green-dark);
+    font-size: 15.5px;
+    line-height: 1.6;
+  }
+  .audience-card a {
+    color: var(--green-deep);
+    font-weight: 600;
+    font-size: 14.5px;
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: auto; padding-top: 12px;
+    transition: gap .3s;
+  }
+  .audience-card a:hover { gap: 14px; color: var(--gold); }
+  .audience-card a svg { width: 14px; height: 14px; }
+
+  /* DIENSTEN */
+  .services { padding: 120px 0; background: var(--white); position: relative; }
+  .services-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: end; margin-bottom: 60px;
+  }
+  .services-header p { color: var(--green-dark); font-size: 16.5px; max-width: 480px; }
+  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .service-card {
+    background: var(--white); border-radius: 20px;
+    overflow: hidden; display: flex; flex-direction: column;
+    transition: transform .4s ease, box-shadow .4s ease;
+    border: 1px solid rgba(27, 58, 43, 0.08);
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow);
+  }
+  .service-card-img {
+    aspect-ratio: 16/10; overflow: hidden; position: relative;
+  }
+  .service-card:hover .img-wrap img { transform: scale(1.06); }
+  .service-card-num {
+    position: absolute; top: 16px; left: 16px;
+    background: rgba(252, 250, 245, 0.95);
+    color: var(--green-deep);
+    width: 36px; height: 36px; border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: 'Fraunces', serif; font-weight: 500; font-size: 15px;
+    z-index: 2;
+  }
+  .service-card-body { padding: 28px 28px 32px; }
+  .service-card h3 { font-size: 24px; margin-bottom: 10px; font-weight: 500; }
+  .service-card p {
+    color: var(--stone); font-size: 15px;
+    line-height: 1.55; margin-bottom: 18px;
+  }
+  .service-card ul {
+    list-style: none; padding: 0;
+    margin-bottom: 18px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .service-card ul li {
+    color: var(--green-dark);
+    font-size: 14px;
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .service-card ul li::before {
+    content: ''; position: absolute;
+    left: 0; top: 7px;
+    width: 12px; height: 6px;
+    border-left: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold);
+    transform: rotate(-45deg);
+  }
+  .service-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--green-deep); font-size: 14px;
+    font-weight: 600; transition: gap .3s;
+  }
+  .service-link:hover { gap: 14px; color: var(--gold); }
+  .service-link svg { width: 14px; height: 14px; }
+
+  /* WERKGEBIED */
+  .area {
+    padding: 120px 0;
+    background: var(--green-deep);
+    color: var(--cream);
+    position: relative; overflow: hidden;
+  }
+  .area::before {
+    content: ''; position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(107, 163, 126, 0.18), transparent 70%);
+    pointer-events: none;
+  }
+  .area-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 80px; position: relative;
+    align-items: center;
+  }
+  .area h2 { color: var(--cream); }
+  .area .section-label { color: var(--gold-soft); }
+  .area .section-label::before { background: var(--gold-soft); }
+  .area-intro p {
+    color: rgba(246, 243, 236, 0.78);
+    font-size: 16.5px; margin-bottom: 16px;
+  }
+  .area-locations {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  .area-loc {
+    background: rgba(246, 243, 236, 0.05);
+    border: 1px solid rgba(246, 243, 236, 0.1);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex; align-items: center; gap: 12px;
+    transition: background .3s, transform .3s;
+  }
+  .area-loc:hover {
+    background: rgba(246, 243, 236, 0.08);
+    transform: translateY(-2px);
+  }
+  .area-loc svg {
+    width: 18px; height: 18px;
+    color: var(--gold-soft); flex-shrink: 0;
+  }
+  .area-loc span {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: var(--cream);
+  }
+
+  /* REVIEWS */
+  .reviews { padding: 120px 0; background: var(--cream); }
+  .reviews-header { text-align: center; margin-bottom: 60px; }
+  .reviews-rating {
+    display: inline-flex; align-items: center; gap: 12px;
+    margin-top: 16px; font-family: 'Fraunces', serif;
+  }
+  .reviews-rating .num {
+    font-size: 28px; font-weight: 500; color: var(--green-deep);
+  }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .review {
+    background: var(--white); border-radius: 20px;
+    padding: 32px 28px;
+    border: 1px solid rgba(27, 58, 43, 0.08);
+    position: relative;
+  }
+  .review-quote {
+    color: var(--green); font-family: 'Fraunces', serif;
+    font-size: 56px; line-height: 0.5;
+    position: absolute; top: 30px; right: 28px;
+    opacity: 0.4;
+  }
+  .review-text {
+    color: var(--green-dark); font-size: 15.5px;
+    line-height: 1.6; margin-bottom: 24px;
+    font-style: italic; font-family: 'Fraunces', serif;
+    font-weight: 400;
+  }
+  .review-author {
+    display: flex; align-items: center; gap: 14px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(27, 58, 43, 0.1);
+  }
+  .review-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--green); color: var(--cream);
+    display: grid; place-items: center;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 17px;
+  }
+  .review-name {
+    font-family: 'Fraunces', serif; font-weight: 500;
+    color: var(--green-deep); font-size: 16px;
+  }
+  .review-source { font-size: 12.5px; color: var(--stone); }
+
+  /* CTA */
+  .cta {
+    padding: 100px 0; background: var(--green-deep);
+    color: var(--cream); position: relative; overflow: hidden;
+  }
+  .cta::before {
+    content: ''; position: absolute;
+    top: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(192, 140, 58, 0.18), transparent 70%);
+  }
+  .cta::after {
+    content: ''; position: absolute;
+    bottom: -150px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(107, 163, 126, 0.18), transparent 70%);
+  }
+  .cta-inner {
+    position: relative; text-align: center;
+    max-width: 760px; margin: 0 auto;
+  }
+  .cta h2 {
+    color: var(--cream);
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 500; margin-bottom: 20px;
+  }
+  .cta h2 em { font-style: italic; color: var(--gold-soft); font-weight: 400; }
+  .cta p {
+    color: rgba(246, 243, 236, 0.78);
+    font-size: 17px; margin-bottom: 36px;
+    max-width: 540px; margin-left: auto; margin-right: auto;
+  }
+  .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .cta .btn--outline {
+    color: var(--cream) !important;
+    border-color: rgba(246, 243, 236, 0.4);
+  }
+  .cta .btn--outline:hover {
+    background: var(--cream); color: var(--green-deep) !important;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #0f261c;
+    color: var(--cream-warm);
+    padding: 80px 0 32px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+    gap: 48px; margin-bottom: 60px;
+  }
+  .footer-brand p {
+    color: rgba(246, 243, 236, 0.6);
+    font-size: 14.5px; margin: 18px 0 24px;
+    line-height: 1.6; max-width: 320px;
+  }
+  .footer-social { display: flex; gap: 10px; }
+  .footer-social a {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(246, 243, 236, 0.08);
+    display: grid; place-items: center;
+    transition: background .3s;
+    color: var(--cream);
+  }
+  .footer-social a:hover { background: var(--gold); }
+  .footer-social svg { width: 16px; height: 16px; }
+
+  footer h5 {
+    color: var(--cream); font-size: 14px; font-weight: 600;
+    margin-bottom: 18px; font-family: 'Inter', sans-serif;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .footer-links {
+    list-style: none; display: flex; flex-direction: column; gap: 10px;
+  }
+  .footer-links a {
+    color: rgba(246, 243, 236, 0.65);
+    font-size: 14.5px; transition: color .25s;
+  }
+  .footer-links a:hover { color: var(--gold-soft); }
+
+  .footer-contact-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 14px; font-size: 14.5px;
+    color: rgba(246, 243, 236, 0.75);
+  }
+  .footer-contact-item svg {
+    width: 16px; height: 16px;
+    color: var(--gold-soft);
+    flex-shrink: 0; margin-top: 3px;
+  }
+  .footer-contact-item a:hover { color: var(--gold-soft); }
+
+  .footer-bottom {
+    padding-top: 28px;
+    border-top: 1px solid rgba(246, 243, 236, 0.1);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    font-size: 13px; color: rgba(246, 243, 236, 0.5);
+  }
+
+  /* REVEAL */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links.mobile-open {
+      display: flex; position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      background: var(--white); padding: 24px 32px;
+      gap: 18px; border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .hero { padding-top: 120px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 50px; }
+    .hero-floating { right: 10px; }
+    .about-grid { grid-template-columns: 1fr; gap: 60px; }
+    .about-visual-accent { width: 180px; bottom: -30px; right: 20px; }
+    .audience-grid { grid-template-columns: 1fr; }
+    .services-header { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .area-grid { grid-template-columns: 1fr; gap: 48px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  }
+  @media (max-width: 560px) {
+    .container { padding: 0 20px; }
+    .hero h1 { font-size: 42px; }
+    .section-title { font-size: 32px; }
+    .about-stats { grid-template-columns: 1fr; gap: 20px; }
+    .area-locations { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .strip-item { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark">NB</span>
+      <span class="logo-text">NB Tuinen<small>Hovenier · Hoofddorp</small></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#over">Over Ons</a></li>
+      <li><a href="#diensten">Diensten</a></li>
+      <li><a href="#werkgebied">Werkgebied</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact" class="btn">Offerte aanvragen</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content reveal">
+      <div class="hero-eyebrow">Hovenier in Hoofddorp & omstreken</div>
+      <h1>Uw tuin,<br><em>onze zorg.</em></h1>
+      <p class="hero-sub">
+        Is uw tuin toe aan een opfrisbeurt? Of wilt u het hele jaar door genieten
+        van een verzorgde tuin zonder er zelf naar om te kijken? Bij NB Tuinen
+        nemen wij het tuinonderhoud uit handen — vakkundig en betrouwbaar.
+      </p>
+      <div class="hero-cta">
+        <a href="mailto:nb.tuinen@outlook.com" class="btn btn--gold">
+          Offerte aanvragen
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=31654903609" class="btn btn--whatsapp" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.88 11.93L4 20l4.18-1.1a7.93 7.93 0 0 0 3.87 1h.01a7.94 7.94 0 0 0 5.54-13.58Zm-5.55 12.21a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.49.65.67-2.42-.16-.25a6.6 6.6 0 1 1 12.25-3.49 6.6 6.6 0 0 1-6.67 6.57Zm3.61-4.93c-.2-.1-1.17-.58-1.36-.64-.18-.07-.31-.1-.45.1-.13.2-.51.64-.62.77-.12.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99-.59-.53-.99-1.18-1.1-1.38-.12-.2-.01-.31.09-.41.09-.1.2-.25.3-.37.1-.13.13-.21.2-.35.06-.13.03-.25-.02-.36-.05-.1-.45-1.08-.62-1.48-.16-.39-.33-.34-.45-.34h-.39c-.13 0-.34.05-.52.25-.18.2-.69.67-.69 1.65 0 .97.71 1.91.81 2.04.1.13 1.4 2.13 3.39 2.99.47.21.84.33 1.13.42.48.15.91.13 1.25.08.38-.06 1.17-.48 1.34-.94.16-.46.16-.86.12-.94-.05-.08-.18-.13-.38-.23Z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-avatars">
+          <div>P</div><div>B</div><div>K</div><div>+</div>
+        </div>
+        <div class="trust-text">
+          <div class="stars">★★★★★</div>
+          <strong>Particulier én zakelijk</strong>
+          <span>Vakmanschap · Betrouwbaar · Heldere communicatie</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="img-wrap">
+        <img loading="eager" src="https://images.pexels.com/photos/2728261/pexels-photo-2728261.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Mooi onderhouden tuin">
+      </div>
+      <div class="hero-floating">
+        <div class="hero-floating-dot"></div>
+        <div>
+          <strong style="display:block; font-family:'Fraunces',serif; color: var(--green-deep); font-size: 14px;">KVK 96284099</strong>
+          <span style="color: var(--stone); font-size: 12px;">Geregistreerd & verzekerd</span>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <div class="hero-badge-text">
+          <strong>Vrijblijvende offerte</strong>
+          <span>Snelle reactie · Eerlijk advies</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- STRIP -->
+<section class="strip">
+  <div class="strip-track">
+    <span class="strip-item">Snoeien</span>
+    <span class="strip-item">Tuinonderhoud</span>
+    <span class="strip-item">Terras reinigen</span>
+    <span class="strip-item">Aanleg tuin</span>
+    <span class="strip-item">Voorjaarsbeurt</span>
+    <span class="strip-item">Winterklaar maken</span>
+    <span class="strip-item">Snoeien</span>
+    <span class="strip-item">Tuinonderhoud</span>
+    <span class="strip-item">Terras reinigen</span>
+    <span class="strip-item">Aanleg tuin</span>
+    <span class="strip-item">Voorjaarsbeurt</span>
+    <span class="strip-item">Winterklaar maken</span>
+  </div>
+</section>
+
+<!-- OVER -->
+<section class="about" id="over">
+  <div class="container about-grid">
+    <div class="about-visual reveal">
+      <div class="about-visual-main">
+        <div class="img-wrap">
+          <img loading="lazy" src="https://images.pexels.com/photos/1301856/pexels-photo-1301856.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Hovenier aan het werk in de tuin">
+        </div>
+      </div>
+      <div class="about-visual-accent">
+        <div class="img-wrap">
+          <img loading="lazy" src="https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Tuingereedschap">
+        </div>
+      </div>
+    </div>
+    <div class="about-content reveal">
+      <span class="section-label">Over NB Tuinen</span>
+      <h2 class="section-title">Hi, ik ben <em>Nick Bult.</em><br>Tuinieren is mijn passie.</h2>
+      <p>
+        Mijn naam is Nick Bult en ik ben het gezicht achter NB Tuinen. Tuinen
+        verzorgen is voor mij meer dan alleen werk — het is mijn passie.
+      </p>
+      <p>
+        Ik help particulieren en bedrijven om hun tuin netjes, gezond en leefbaar
+        te houden. Of het nu gaat om een weelderige achtertuin of een strak
+        bedrijfsterrein. Met oog voor detail, heldere communicatie en betrouwbare
+        service zorg ik dat jij nergens omkijken naar hebt.
+      </p>
+      <div class="about-stats">
+        <div>
+          <div class="stat-num">100<span>%</span></div>
+          <div class="stat-label">Vakmanschap en aandacht</div>
+        </div>
+        <div>
+          <div class="stat-num">9<span>+</span></div>
+          <div class="stat-label">Plaatsen in werkgebied</div>
+        </div>
+        <div>
+          <div class="stat-num">2<span>×</span></div>
+          <div class="stat-label">Particulier & zakelijk</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="audience">
+  <div class="container">
+    <div class="audience-header reveal">
+      <span class="section-label" style="padding-left:0;">Voor wie</span>
+      <h2 class="section-title">Professionele diensten voor <em>iedereen.</em></h2>
+      <p>
+        Of u nu een kleine stadstuin heeft of een groot bedrijfsterrein —
+        wij zorgen dat uw buitenruimte er altijd piekfijn bij ligt.
+      </p>
+    </div>
+    <div class="audience-grid">
+      <div class="audience-card reveal">
+        <div class="audience-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V21a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5Z"/><path d="M9 22V12h6v10"/></svg>
+        </div>
+        <span class="audience-tag">Particulieren</span>
+        <h3>Voor thuis</h3>
+        <p>
+          Wilt u een verzorgde tuin zonder zelf uren te hoeven ploeteren? Wij nemen
+          het onderhoud met liefde en vakmanschap van u over. Snoeien, maaien,
+          onkruid verwijderen of klaar maken voor een nieuw seizoen — uw tuin ligt
+          er altijd op zijn best bij.
+        </p>
+        <a href="mailto:nb.tuinen@outlook.com">
+          Neem vrijblijvend contact op
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="audience-card reveal">
+        <div class="audience-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h8M8 16h4"/></svg>
+        </div>
+        <span class="audience-tag">Bedrijven</span>
+        <h3>Voor uw zaak</h3>
+        <p>
+          Een verzorgde buitenruimte is het visitekaartje van uw bedrijf. Wij
+          onderhouden bedrijfstuinen, kantoor- en bedrijventerreinen,
+          appartementencomplexen, schoolpleinen en zorginstellingen — het hele
+          jaar door representatief en professioneel.
+        </p>
+        <a href="mailto:nb.tuinen@outlook.com">
+          Vraag een zakelijke offerte aan
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIENSTEN -->
+<section class="services" id="diensten">
+  <div class="container">
+    <div class="services-header reveal">
+      <div>
+        <span class="section-label">Onze diensten</span>
+        <h2 class="section-title">Vakwerk van A <em>tot Z.</em></h2>
+      </div>
+      <p>
+        Van regelmatig onderhoud tot complete aanleg — wij zorgen ervoor dat uw
+        tuin er gezond, netjes en leefbaar uitziet, het hele jaar door.
+      </p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-card-img">
+          <div class="img-wrap">
+            <img loading="lazy" src="https://images.pexels.com/photos/4505169/pexels-photo-4505169.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Snoeien van planten">
+          </div>
+          <div class="service-card-num">01</div>
+        </div>
+        <div class="service-card-body">
+          <h3>Snoeien</h3>
+          <p>
+            Onze snoeiservice zorgt ervoor dat uw tuin er altijd netjes en
+            verzorgd uitziet. We verwijderen dode takken en zorgen voor een
+            optimale groei.
+          </p>
+          <ul>
+            <li>Professionele snoeitechnieken</li>
+            <li>Optimale groei van planten en bomen</li>
+            <li>Verzorgde uitstraling</li>
+          </ul>
+          <a href="mailto:nb.tuinen@outlook.com" class="service-link">
+            Vraag snoei-offerte aan
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-card-img">
+          <div class="img-wrap">
+            <img loading="lazy" src="https://images.pexels.com/photos/259600/pexels-photo-259600.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Bestrating en terras">
+          </div>
+          <div class="service-card-num">02</div>
+        </div>
+        <div class="service-card-body">
+          <h3>Terras onderhoud</h3>
+          <p>
+            Tegels vol groene aanslag, onkruid tussen de voegen of verzakte
+            bestrating? Wij zorgen dat uw terras, oprit of looppad er weer
+            schoon, veilig en verzorgd uitziet.
+          </p>
+          <ul>
+            <li>Reinigen van bestrating</li>
+            <li>Onkruid tussen tegels verwijderen</li>
+            <li>Voegen opnieuw invegen</li>
+            <li>Kleine herstellingen</li>
+          </ul>
+          <a href="mailto:nb.tuinen@outlook.com" class="service-link">
+            Plan terras-reiniging
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-card-img">
+          <div class="img-wrap">
+            <img loading="lazy" src="https://images.pexels.com/photos/589/garden-green-trees-back-yard.jpg?auto=compress&cs=tinysrgb&w=900" alt="Verzorgde tuin met gazon">
+          </div>
+          <div class="service-card-num">03</div>
+        </div>
+        <div class="service-card-body">
+          <h3>Tuinonderhoud</h3>
+          <p>
+            Het onderhoud van uw tuin is essentieel voor een gezonde groei van
+            planten en bomen. Laat ons het zware werk doen, zodat u kunt
+            genieten van een prachtige tuin.
+          </p>
+          <ul>
+            <li>Wekelijks, maandelijks of op afroep</li>
+            <li>Gazon, hagen en borders</li>
+            <li>Voorjaars- en najaarsbeurten</li>
+            <li>Winterklaar maken</li>
+          </ul>
+          <a href="mailto:nb.tuinen@outlook.com" class="service-link">
+            Bespreek onderhoud
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-card-img">
+          <div class="img-wrap">
+            <img loading="lazy" src="https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Aanleg van een nieuwe tuin">
+          </div>
+          <div class="service-card-num">04</div>
+        </div>
+        <div class="service-card-body">
+          <h3>Aanleg tuin</h3>
+          <p>
+            Droomt u van een compleet nieuwe tuin? Wij verzorgen de aanleg van
+            begin tot eind. Van grondwerk en bestrating tot beplanting en
+            afwerking — perfect afgestemd op uw wensen.
+          </p>
+          <ul>
+            <li>Grondwerk en bestrating</li>
+            <li>Beplanting en borders</li>
+            <li>Aanpassingen bestaande tuin</li>
+            <li>Compleet plan op maat</li>
+          </ul>
+          <a href="mailto:nb.tuinen@outlook.com" class="service-link">
+            Vraag een ontwerp aan
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WERKGEBIED -->
+<section class="area" id="werkgebied">
+  <div class="container area-grid">
+    <div class="area-intro reveal">
+      <span class="section-label">Ons werkgebied</span>
+      <h2 class="section-title">Actief in <em>de regio.</em></h2>
+      <p>
+        Wij werken in Hoofddorp, Haarlem en de omliggende plaatsen. Staat uw
+        woonplaats er niet bij? Neem gerust contact op — vaak kunnen we ook
+        daar van dienst zijn.
+      </p>
+      <div style="margin-top: 28px;">
+        <a href="mailto:nb.tuinen@outlook.com" class="btn btn--gold">
+          Vraag het ons
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="area-locations reveal">
+      <div class="area-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Hoofddorp</span></div>
+      <div class="area-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Nieuw-Vennep</span></div>
+      <div class="area-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Heemstede</span></div>
+      <div class="area-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Haarlem</span></div>
+      <div class="area-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Bennebroek</span></div>
+      <div class="area-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Badhoevedorp</span></div>
+      <div class="area-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Bloemendaal</span></div>
+      <div class="area-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Bentveld</span></div>
+      <div class="area-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Uithoorn</span></div>
+      <div class="area-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg><span>& omliggende</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="reviews-header reveal">
+      <span class="section-label" style="padding-left:0;">Klanten over NB Tuinen</span>
+      <h2 class="section-title">Vakwerk dat <em>gewaardeerd</em> wordt.</h2>
+      <div class="reviews-rating">
+        <span class="stars">★★★★★</span>
+        <span class="num">5.0</span>
+        <span style="color: var(--stone); font-size: 14px;">· Tevreden klanten</span>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review reveal">
+        <span class="review-quote">"</span>
+        <p class="review-text">
+          Nick is vakkundig, betrouwbaar en denkt actief mee. Onze tuin ziet er
+          weer fantastisch uit en we hoeven er zelf nauwelijks naar om te kijken.
+        </p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div>
+            <div class="review-name">A. de Jong</div>
+            <div class="review-source">Particulier · Hoofddorp</div>
+          </div>
+        </div>
+      </div>
+      <div class="review reveal">
+        <span class="review-quote">"</span>
+        <p class="review-text">
+          NB Tuinen onderhoudt al een jaar ons bedrijfsterrein. Strak, professioneel
+          en altijd op tijd. Een echte aanrader voor wie kwaliteit zoekt.
+        </p>
+        <div class="review-author">
+          <div class="review-avatar">M</div>
+          <div>
+            <div class="review-name">M. van der Velde</div>
+            <div class="review-source">Zakelijk · Haarlem</div>
+          </div>
+        </div>
+      </div>
+      <div class="review reveal">
+        <span class="review-quote">"</span>
+        <p class="review-text">
+          Volledige nieuwe tuin laten aanleggen. Van ontwerp tot oplevering top
+          begeleid. Heldere communicatie en netjes afgewerkt. Heel tevreden!
+        </p>
+        <div class="review-author">
+          <div class="review-avatar">S</div>
+          <div>
+            <div class="review-name">S. Bakker</div>
+            <div class="review-source">Particulier · Heemstede</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <span class="section-label" style="color: var(--gold-soft); padding-left: 0;">Aan de slag</span>
+      <h2>Klaar voor een <em>verzorgde tuin?</em></h2>
+      <p>
+        Neem vrijblijvend contact op voor een offerte of een goed gesprek over uw
+        wensen. Bel, app of mail — wij reageren snel en denken graag met u mee.
+      </p>
+      <div class="cta-buttons">
+        <a href="mailto:nb.tuinen@outlook.com" class="btn btn--gold">
+          Mail nb.tuinen@outlook.com
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+        <a href="tel:+31654903609" class="btn btn--outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          06 - 5490 3609
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=31654903609" class="btn btn--whatsapp" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.88 11.93L4 20l4.18-1.1a7.93 7.93 0 0 0 3.87 1h.01a7.94 7.94 0 0 0 5.54-13.58Zm-5.55 12.21a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.49.65.67-2.42-.16-.25a6.6 6.6 0 1 1 12.25-3.49 6.6 6.6 0 0 1-6.67 6.57Zm3.61-4.93c-.2-.1-1.17-.58-1.36-.64-.18-.07-.31-.1-.45.1-.13.2-.51.64-.62.77-.12.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99-.59-.53-.99-1.18-1.1-1.38-.12-.2-.01-.31.09-.41.09-.1.2-.25.3-.37.1-.13.13-.21.2-.35.06-.13.03-.25-.02-.36-.05-.1-.45-1.08-.62-1.48-.16-.39-.33-.34-.45-.34h-.39c-.13 0-.34.05-.52.25-.18.2-.69.67-.69 1.65 0 .97.71 1.91.81 2.04.1.13 1.4 2.13 3.39 2.99.47.21.84.33 1.13.42.48.15.91.13 1.25.08.38-.06 1.17-.48 1.34-.94.16-.46.16-.86.12-.94-.05-.08-.18-.13-.38-.23Z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo" style="color: var(--cream);">
+          <span class="logo-mark" style="background: var(--gold);">NB</span>
+          <span class="logo-text" style="color: var(--cream);">NB Tuinen<small style="color: rgba(246,243,236,0.5);">Hovenier · Hoofddorp</small></span>
+        </a>
+        <p>
+          Vakkundig tuinonderhoud, snoeien, terras onderhoud en complete
+          tuinaanleg. Voor particulieren en bedrijven in Hoofddorp, Haarlem
+          en omstreken.
+        </p>
+        <div class="footer-social">
+          <a href="https://instagram.com/nb.tuinen" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=31654903609" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.88 11.93L4 20l4.18-1.1a7.93 7.93 0 0 0 3.87 1h.01a7.94 7.94 0 0 0 5.54-13.58Zm-5.55 12.21a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.49.65.67-2.42-.16-.25a6.6 6.6 0 1 1 12.25-3.49 6.6 6.6 0 0 1-6.67 6.57Z"/></svg>
+          </a>
+          <a href="mailto:nb.tuinen@outlook.com" aria-label="E-mail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z"/><path d="m22 6-10 7L2 6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h5>Diensten</h5>
+        <ul class="footer-links">
+          <li><a href="#diensten">Snoeien</a></li>
+          <li><a href="#diensten">Terras onderhoud</a></li>
+          <li><a href="#diensten">Tuinonderhoud</a></li>
+          <li><a href="#diensten">Aanleg tuin</a></li>
+          <li><a href="#diensten">Voorjaarsbeurt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Navigatie</h5>
+        <ul class="footer-links">
+          <li><a href="#over">Over Ons</a></li>
+          <li><a href="#werkgebied">Werkgebied</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z"/><path d="m22 6-10 7L2 6"/></svg>
+          <a href="mailto:nb.tuinen@outlook.com">nb.tuinen@outlook.com</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          <a href="tel:+31654903609">06 - 5490 3609</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Hoofddorp, Haarlem<br>& omstreken</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <span>KVK 96284099</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 - 2026 NB Tuinen. Alle rechten voorbehouden.</span>
+      <span>Hovenier · Tuinonderhoud · Aanleg</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Image error handling - groene placeholder bij fout
+  document.querySelectorAll('.img-wrap img').forEach(img => {
+    img.addEventListener('load', () => img.classList.add('loaded'));
+    img.addEventListener('error', () => {
+      img.parentElement.classList.add('has-error');
+    });
+    // Als ze al gecached/geladen zijn
+    if (img.complete && img.naturalHeight !== 0) {
+      img.classList.add('loaded');
+    }
+  });
+
+  // Mobiel menu
+  const toggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle?.addEventListener('click', () => navLinks.classList.toggle('mobile-open'));
+  navLinks?.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => navLinks.classList.remove('mobile-open'))
+  );
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav shrink on scroll
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) nav.style.padding = '12px 0';
+    else nav.style.padding = '18px 0';
+  });
+</script>
+</body>
+</html>
